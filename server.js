@@ -5,6 +5,9 @@ const ejs = require('ejs')
 const path = require('path')
 const expressLayout = require('express-ejs-layouts')
 
+
+// Assets
+app.use(express.static(__dirname +'/public'))
 app.get("/", (req,res)=>{
     res.render("home")
 })
