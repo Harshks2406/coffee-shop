@@ -11,10 +11,11 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-ejs-layouts": "^2.5.1",
-    "express-flash": "^0.0.2",
+    "express-flash": "0.0.2",
     "express-session": "^1.17.3",
     "laravel-mix": "^6.0.44",
-    "mongoose": "^6.3.6",
+    "mongoose": "^6.3.8",
+    "noty": "^3.2.0-beta-deprecated",
     "sass-loader": "^13.0.0"
   },
   "scripts": {

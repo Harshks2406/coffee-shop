@@ -1,7 +1,10 @@
+const session = require("express-session")
+
 function cartController(){
     return{
         index(req,res){
-                res.render("customers/cart")
+                cart = req.session.cart ? req.session.cart : {}
+                res.render("customers/cart",{cart: cart})
         },
 
         update(req,res){
@@ -24,13 +27,13 @@ function cartController(){
                     qty: 1
                 }
                 cart.totalQty = cart.totalQty + 1;
-                cart.totalPrice = cart.totalPrice + req.body.price
+                cart.totalPrice = parseInt(cart.totalPrice) + parseInt(req.body.price)
             } else {
-                cart.item[req.body._id].qty = cart.item[req.body._id].qty + 1
+                cart.items[req.body._id].qty = cart.items[req.body._id].qty + 1
                 cart.totalQty  = cart.totalQty + 1
-                cart.totalPrice = cart.totalPrice  + req.body.price
+                cart.totalPrice = parseInt(cart.totalPrice)+ parseInt(req.body.price)
             }
-            return res.json({ totalQty: req.session.cart.totalQty})
+            return res.json({ totalQty: req.session.cart.totalQty})  
         }
     }
 }

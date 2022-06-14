@@ -19,16 +19,17 @@ connection.once('open',()=>{
     console.log("Database Connected")
 })
 
+//Global middleware
+app.use((req,res,next)=>{
+    res.locals.session = req.session
+    next()
+})
+
+
 // set template engine
 app.use(expressLayout)
 app.set('views',path.join(__dirname,'/resources/views'))
 app.set('view engine','ejs')
-
-// Session store
-// let mongoStore =   new MongoDbStore({
-//     mongooseConnection : connection,
-//     collection: 'sessions'
-// })
 
 // Session config
 app.use(session({
