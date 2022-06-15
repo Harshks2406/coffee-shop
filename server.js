@@ -9,6 +9,8 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const flash = require('express-flash')
 const MongoStore = require('connect-mongo')
+const { urlencoded } = require('express')
+const passport = require('passport')
 
 //mongo connection
 const url = 'mongodb://localhost/cafe'
@@ -20,16 +22,20 @@ connection.once('open',()=>{
 })
 
 //Global middleware
-app.use((req,res,next)=>{
-    res.locals.session = req.session
+app.use(function(req,res,next){
+    res.app.locals.session = req.session
+    res.app.locals.user = req.user
     next()
 })
 
 
 // set template engine
 app.use(expressLayout)
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 app.set('views',path.join(__dirname,'/resources/views'))
 app.set('view engine','ejs')
+
 
 // Session config
 app.use(session({
@@ -39,6 +45,12 @@ app.use(session({
     saveUninitialized: false,
     cookie: { maxAge: 1000*60*60*24} //24 hours
 }))
+
+//Passport config
+const passportInit = require("./app/config/passport")
+passportInit(passport)
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(flash())
 

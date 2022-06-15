@@ -4,7 +4,8 @@ function homeController(){
     return{
         async index(req,res){
             const drinks = await Menu.find()
-            res.render("home",{drinks: drinks})  
+            cart = req.session.cart ? req.session.cart : {}
+            res.render("home",{drinks: drinks, cart:cart})  
 
         // Menu.find().then((drinks)=>{
         //     console.log(drinks)
