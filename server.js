@@ -21,14 +21,6 @@ connection.once('open',()=>{
     console.log("Database Connected")
 })
 
-//Global middleware
-app.use(function(req,res,next){
-    res.app.locals.session = req.session
-    res.app.locals.user = req.user
-    next()
-})
-
-
 // set template engine
 app.use(expressLayout)
 app.use(express.json())
@@ -51,6 +43,13 @@ const passportInit = require("./app/config/passport")
 passportInit(passport)
 app.use(passport.initialize())
 app.use(passport.session())
+
+//Global middleware
+app.use(function(req,res,next){
+    res.locals.session = req.session
+    res.locals.user = req.user
+    next()
+})
 
 app.use(flash())
 

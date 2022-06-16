@@ -25,7 +25,6 @@ function authController(){
 
                     return res.redirect('/')
                 })
-
             })(req,res,next)
         },
         register(req,res){
@@ -63,7 +62,12 @@ function authController(){
                 req.flash('error','Something went wrong')
                 return res.redirect('/register')
             })
-            console.log(req.body)
+        },
+        logout(req,res,next){
+            req.logout((err)=>{
+                if(err){ return next(err)}
+                return res.redirect('/login')
+            })
         }
     }
 }
