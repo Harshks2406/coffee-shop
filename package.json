@@ -27,7 +27,8 @@
     "serve": "node server.js",
     "development": "mix",
     "watch": "mix watch",
-    "production": "mix --production"
+    "production": "mix --production",
+    "start": "node server.js"
   },
   "devDependencies": {
     "node-sass": "^7.0.1",
