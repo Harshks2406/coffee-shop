@@ -13,7 +13,8 @@ const { urlencoded } = require('express')
 const passport = require('passport')
 
 //mongo connection
-const url = 'mongodb://localhost/cafe' || process.env.MONGODB_URL
+// const url = 'mongodb://localhost/cafe' || process.env.MONGODB_URL
+const url = "mongodb+srv://Harsh24:Despacito@cluster0.ok2gk.mongodb.net/cafe?retryWrites=true&w=majority"
 mongoose.connect(url,{useNewUrlParser: true, useUnifiedTopology: true})
 
 const connection = mongoose.connection
