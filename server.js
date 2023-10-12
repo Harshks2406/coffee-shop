@@ -32,7 +32,7 @@ app.set('view engine','ejs')
 
 // Session config
 app.use(session({
-    secret: process.env.COOKIE_SECRET,
+    secret: thisismysecret,
     resave: false,
     store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL || 'mongodb://localhost/cafe'}), 
     saveUninitialized: false,
